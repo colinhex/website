@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/register.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/textFields.css')}}">
+    <title>Sign-In</title>
+</head>
+<body>
+    <div id="blocking"></div>
+    <div class="content">
+        <div class="navbar">
+            <div id="ni0" class="navbar-item">
+                <a id="nbb0" class="navbar-button" type="button">
+                    back to homepage
+                </a>
+            </div>
+        </div>
+        <div class="page-content" style="background-size: cover; background-image: url({{ url_for('static', filename='/img/dark.jpg') }});">
+            <div class="container">
+                <div class="form-container">
+                    <form id="login-form" method="POST">
+                        <h3 >You already have an account?</h3>
+                        <label for="email-login">Email</label>
+                        <input name="email" id="email-login" type="text" placeholder="email..">
+                        <label for="password-login">Password</label>
+                        <input name="password" id="password-login" type="password" placeholder="password..">
+                        <button name="submit" value="login" class="default-button">Login</button>
+                    </form>
+                    <form id="register-form" method="POST">
+                        <h3 >Otherwise...</h3>
+                        <label for="username-register">Username</label>
+                        <input name="username" id="username-register" type="text" placeholder="username..">
+                        <label for="email-register">Email</label>
+                        <input name="email" id="email-register" type="text" placeholder="email..">
+                        <label for="password-register">Password</label>
+                        <input name="password" id="password-register" type="password" placeholder="password..">
+                        <label for="password2-register">Repeat Password</label>
+                        <input name="password2" id="password2-register" type="password" placeholder="password..">
+                        <button name="submit" value="register" class="default-button">Register</button>
+                    </form>
+                </div>
+                <div class="form-container">
+                    <form>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='/js/signin_script.js')}}"></script>
+</body>
+</html>

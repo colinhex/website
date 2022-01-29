@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/blog.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/textFields.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/editor.css')}}">
+    <title>Blog</title>
+</head>
+<body>
+ <div id="blocking"></div>
+    <div class="content">
+        <div class="navbar">
+            <div id="ni0" class="navbar-item">
+                <a id="nbb0" class="navbar-button" type="button">
+                    back to homepage
+                </a>
+            </div>
+        </div>
+        <div class="page-content" style="background-size: cover; background-image: url({{ url_for('static', filename='/img/dark.jpg') }});">
+            <div id="blog" class="dyn-blog">
+                <div class="dyn-blog-element">
+                    <p class="blog-text">
+                        Welcome to the Updates!
+                    </p>
+                    <p class="blog-post-info">
+                        PINNED, Contributor: hypenguinD22, Time: 12.01.2022 : 00.15
+                    </p>
+                    <div id="figure-image" class="topContainer">
+                        <img src="/static/img/email.jpg" style="width: 300px; height: 200px;">
+                    </div>
+                    <div class="topContainerPartner">
+                        <label for="figure-image" class="top-container-description">
+                            Do you want to stalk me and see what I'm up to?
+                        </label>
+                    </div>
+                    <p class="blog-text">
+                        Hello and welcome to my updates! If you would like to be updated about my current projects
+                        you can leave your email address here, I'll encrypt it and keep it safe, swiss promise.
+                        In the future you might hear about a new feature with which people can unsubscribe!!!
+                        Exciting! Furthermore, if you make an account you can post yourself...
+                    </p>
+                    <div class="bottomContainer">
+                        <div class="form__group">
+                            <input id="text-input-subscription" name="email-field" type="text" class="form__field" placeholder="Your email...">
+                        </div>
+                        <button id="button-subscription" type="submit" class="sub-button default-button"> subscribe </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='/js/blog_script.js')}}"></script>
+    <script type="module" defer>
+            render({{ blog_posts | tojson }}, {{ blog_comments | tojson }});
+            configureReplyButtons(
+                document.getElementsByClassName('reply-button'),
+                'url({{ url_for('static', filename='/img/buttonIcons/reply.svg') }})'
+            );
+            loadPostEditor();
+    </script>
+</body>
+</html>

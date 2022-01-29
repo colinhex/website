@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css')}}">
+    <title>colinhex</title>
+</head>
+<body>
+    <div id="blocking"></div>
+    <div class="content">
+        <div class="navbar">
+            <div id="ni0" class="navbar-item">
+                <a id="nbb0" class="navbar-button" type="button">
+                    Home
+                </a>
+            </div>
+            <div id="ni1" class="navbar-item">
+                <a id="nbb1" class="navbar-button" type="button">
+                    About
+                </a>
+            </div>
+            <div id="ni2" class="navbar-item">
+                <a id="nbb2" class="navbar-button" type="button">
+                    Contact
+                </a>
+            </div>
+            <div id="ni3" class="navbar-item">
+                <a id="nbb3" class="navbar-button" type="button">
+                    Projects
+                </a>
+            </div>
+        </div>
+        <div class="page-content">
+            <div id="banner" style="background-image: url({{ url_for('static', filename='/img/laptop.jpg') }});"></div>
+            <div id="banner-text" style="background-image: url({{ url_for('static', filename='/img/colinhex.png') }});"></div>
+            <div id="pg0" class="slide-page" style="z-index: 1; background-color: var(--color-page0);">
+                <div id="spc0" class="slide-page-content">
+                    <div class="page-container">
+                        <div class="page-sub-container">
+                            <p class="page-title">
+                                Navigation
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph-title">
+                                Updates & Forum
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                In the update forum you can find updates to the website, new projects and a general
+                                overlook over what I'm up to. You can also subscribe to the forum and receive the gist
+                                comfortably in your email. If you're a user you can create Posts and comments yourself!
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <button class="default-button page-button" onclick="window.location.href='/updates'">to update forum</button>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph-title">
+                                Register & Login
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                Create an account or login to get more privileges on the website.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <button class="default-button page-button" onclick="window.location.href='/signin'">to login</button>
+                        </div>
+                    </div>
+                    <div class="page-container">
+
+                    </div>
+                </div>
+            </div>
+            <div id="pg1" class="slide-page" style="z-index: 2; background-color: var(--color-page1);">
+                <div id="spc1" class="slide-page-content">
+                    <div class="page-container">
+                        <div class="page-sub-container">
+                            <p class="page-paragraph-title">
+                                "Why does my code not compile?"
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                When I joined the Computer Science faculty in Basel as an undergraduate,
+                                I had never written a single line of code. What I learned very quickly was that
+                                no matter the subject: some basic understanding, engagement and interest can make
+                                a fool be a rookie, and let a rookie become savvy.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                Through the course of my degree I was dabbling first in Java, then MatLab and Python,
+                                then some C++ and SQL and, at the time of writing, in the basics of web-development.
+                                The biggest "Ahaa"-moment was not some deeply-buried-in-the-stack exception, though there
+                                were quite a few of those, but the sheer size of all individual and interconnected
+                                software-systems that span the globe and drive the economy, society and politics of today
+                                and tomorrow.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                So, what is my place in the world of tomorrow? I think it's here!.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="page-container">
+                        <div class="page-sub-container">
+                            <img class="page-image" src="{{ url_for('static', filename='/img/desk.png') }}">
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph-title">
+                                "Can I even get this done on time?"
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                If anything makes somebody an engineer it's knowing your own limits and not
+                                being scared of the "new" or "unknown".
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="pg2" class="slide-page" style="z-index: 3; background-color: var(--color-page2);">
+                <div id="spc2" class="slide-page-content">
+                    <div class="page-container">
+                        <p class="page-paragraph">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                            dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+                            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        </p>
+                    </div>
+                    <div class="page-container">
+                        <img id="spc2img" src="{{ url_for('static', filename='/img/eye.png') }}">
+                    </div>
+                </div>
+            </div>
+            <div id="pg3" class="slide-page" style="z-index: 4; background-color: var(--color-page3);">
+                <div id="spc3" class="slide-page-content">
+                    <div class="page-container">
+                        <img id="spc3img" src="{{ url_for('static', filename='/img/eye.png') }}">
+                    </div>
+                    <div class="page-container">
+                         <p class="page-paragraph">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                            dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+                            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus <a href="/updates">listen for UPDATES</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='/js/index_script.js')}}"></script>
+</body>
+</html>

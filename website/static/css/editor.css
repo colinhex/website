@@ -1,0 +1,141 @@
+.editor {
+    position: relative;
+    top: 10px;
+    margin-left: 10%;
+    margin-top: 1%;
+    margin-right: 0%;
+    margin-bottom: 2%;
+    display: block;
+    width: 80%;
+    min-height: 50px;
+    box-sizing: border-box;
+}
+
+.editor-container {
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    height: 50px;
+    display: block;
+}
+
+.textarea-name-container {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 40px;
+    display: block;
+}
+
+.textarea-container {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: calc(100% - 60px);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.editor-button-container {
+    display: block;
+    margin-top: 20px;
+    width: 80%;
+    height: 50px;
+}
+
+.editor-textarea {
+    margin-top: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--blog-button-color);
+    font-family: "Poppins", serif;
+    font-size: 18px;
+    color: white;
+    resize: none;
+    border-radius: 6px;
+}
+
+.editor-button {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: right;
+    height: 90%;
+    width: calc(100%/3);
+}
+
+.editor-label {
+    font-family: "Poppins", serif;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+
+.post-editor-toggle-element {
+    position: relative;
+    display: inline-block;
+    margin-top: 50px;
+    width: 20%;
+    height: 60px;
+    left: 37.8%;
+    box-sizing: border-box;
+}
+
+.post-editor-toggle-button {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.element-appearance {
+    transition-delay: 0.1s;
+    animation: element-appearance-animation 0.3s forwards;
+}
+
+@keyframes element-appearance-animation {
+    0% {
+        left: -50%;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.post-editor-appearance {
+    transition-delay: 0.3s;
+    animation: post-editor-appearance-animation 0.5s forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes post-editor-appearance-animation {
+    0% {
+        top: -110%;
+    }
+    80% {
+        top: 5%;
+    }
+    100% {
+        top: 0%;
+    }
+}
+
+
+.comment-editor {
+    width: 60%;
+    margin-top: -2%;
+    left: 5%;
+}
+
+/*
+.editor-dynamic-blog-element {
+    height: auto;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    outline: none;
+    border: none;
+}
+*/

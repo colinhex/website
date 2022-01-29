@@ -1,0 +1,177 @@
+
+html {
+    overflow: hidden;
+}
+
+.navbar-item {
+    width: 100%;
+}
+
+.navbar-item:nth-of-type(1) {
+    background-color: var(--blog-navbar-color);;
+}
+
+.page-content {
+    background-color: var(--blog-background-color);
+}
+
+.dyn-blog {
+    position: relative;
+    left: 10%;
+    width: 80%;
+    height: 90%;
+    background-color: var(--blog-background-color);
+    overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    &::-webkit-scrollbar {
+        background: transparent; /* Chrome/Safari/Webkit */
+        width: 0px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.dyn-blog-element {
+    position: relative;
+    width: 95%;
+    min-height: 50px;
+    margin: 2%;
+    outline: none;
+    border-radius: 120px;
+    display: block;
+	border: 4px solid transparent;
+	background: linear-gradient(var(--blog-post-background-color0), var(--blog-post-background-color1)) padding-box,
+	    radial-gradient(farthest-corner at 50% 50%, var(--blog-post-background-color0), var(--blog-post-background-color1)) border-box;
+	background-color: var(--blog-post-background-color);
+}
+
+.comment-section {
+    background: none;
+}
+
+.comment {
+    margin-top: -2%;
+    left: 5%;
+    width: 40%;
+    background: linear-gradient(var(--blog-post-background-color0), var(--blog-post-background-color1)) padding-box,
+	radial-gradient(farthest-corner at 50% 50%, var(--blog-post-background-color0), var(--color-black)) border-box;
+	background-color: var(--blog-post-background-color);
+}
+
+.reply-button {
+    position: absolute;
+    left: calc(95% - 50px);
+    top: calc(50% - 25px);
+    bottom: calc(50% - 25px);
+    height: 50px;
+    right: calc(5% + 50px);
+    width: 50px;
+    border-radius: 50px;
+    background-color: var(--blog-button-color);
+    background-size: 40% 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hidden-reply-button {
+    visibility: hidden;
+}
+
+
+.blog-text {
+    position: relative;
+    left: 10%;
+    top: 10%;
+    width: 80%;
+    height: 100%;
+    text-align: justify;
+    font-family: "Poppins", serif;
+    font-size: 20px;
+    color: white;
+}
+
+.blog-post-info {
+    position: relative;
+    left: 10%;
+    top: 0%;
+    width: 80%;
+    height: 100%;
+    text-align: justify;
+    font-family: "Poppins", serif;
+    font-size: 15px;
+    color: white;
+}
+
+.topContainer {
+    position: relative;
+    display: inline-flex;
+    margin-top: 20px;
+    left: 10%;
+    background-color: white;
+    border: 5px groove var(--color-gray);
+    border-radius: 5px;
+}
+
+.topContainerPartner {
+    position: relative;
+    left: 10%;
+    top: 30%;
+    right: 10%;
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.top-container-description {
+    font-family: "Poppins", serif;
+    font-size: 15px;
+    color: white;
+}
+
+.bottomContainer {
+    position: relative;
+    display: flex;
+    top: 0px;
+    left: 10%;
+    margin-bottom: 15px;
+    min-height: 0px;
+    min-width: 0px;
+    width: 80%;
+    height: 100px;
+}
+
+form {
+    height: 100%;
+    width: 100%;
+}
+
+.text-input {
+    position: relative;
+    left: 10%;
+    top: 29%;
+    width: 40%;
+    height: 30%;
+    font-family: "Poppins", serif;
+    font-size: 15px;
+}
+
+.sub-button {
+   position: relative;
+   left: 10%;
+   top: 29%;
+   margin-left: 5%;
+   width: 25%;
+   height: 45%;
+   background-color: var(--blog-button-color);
+}
+
+.bottom-node {
+    height: 100% !important;
+    width: 95% !important;
+    margin-left: 5% !important;
+}

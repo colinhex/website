@@ -1,0 +1,41 @@
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+
+  --website-font: "Poppins";
+
+  /* Colors */
+  --color-red: #ec1840;
+  --color-gray: #9b9b9b;
+  --color-purple: #7a18ec;
+  --color-white: #fff;
+  --color-white-transparent: rgba(255,255,255,0.13);
+  --color-black: rgb(0, 0, 0, 1);
+  --speed-normal: 0.5s;
+  --speed-fast: 0.8s;
+
+  --transparent: rgb(0, 0, 0, 0);
+
+  --color-page0: #202020;
+  --color-page1: #404040;
+  --color-page2: #83677B;
+  --color-page3: #A9A9A9;
+
+  --color-button-labels: #FFFFFF;
+
+  /* blog coloring */
+  --blog-navbar-color: var(--color-page0);
+  --blog-background-color: var(--transparent);
+  --blog-post-background-color0: var(--color-white-transparent);
+  --blog-post-background-color1: var(--color-white-transparent);
+  --blog-button-color: var(--color-white-transparent);
+
+  /* text input */
+  --text-input-primary: #11998e;
+  --text-input-secondary: #38ef7d;
+
+  /* Animation */
+  --intro-animation-speed: 4s;
+  --page-content-fade-in-speed: 1s;
+}

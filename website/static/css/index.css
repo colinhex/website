@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+html {
+    overflow: hidden;
+}
+
+#banner {
+    position: absolute;
+    margin 0;
+    width: 600px;
+    height: 1200px;
+    left: 30vw;
+    bottom: -30vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.slide-banner {
+    animation-duration: var(--intro-animation-speed);
+    animation-name: banner-animation;
+}
+
+@keyframes banner-animation {
+    0% {
+        left: -10%;
+        opacity: 0;
+    }
+    100% {
+        left: 30%;
+        opacity: 1;
+    }
+}
+
+#banner-text {
+    top: 70%;
+    left: 50%;
+    position: absolute;
+    background-size: 500px 80px;
+    width: 1000px;
+    height: 200px;
+    background: contain;
+    background-repeat: no-repeat;
+}
+
+.fade-in-banner-text {
+    animation-duration: var(--intro-animation-speed);
+    animation-name: banner-text-fade;
+}
+
+@keyframes banner-text-fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.slide-page {
+    position: relative;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    visibility: hidden;
+    max-height: 0;
+}
+
+.roll-down {
+    transition-delay: 0.1s;
+    max-height: 90%;
+    transition: max-height 1s;
+}
+
+.fixed-page {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    max-height: 100%;
+}
+
+.slide-page-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: auto;
+    content-align: center;
+    background-color: rgba(0,0,0,0);
+    display: flex;
+
+    visibility: hidden;
+    overflow: scroll;
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        background: transparent; /* Chrome/Safari/Webkit */
+        width: 0px;
+    }
+}
+
+.fade-in-slide-page-content {
+    animation-duration: var(--page-content-fade-in-speed);
+    animation-name: fade-in;
+}
+
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.page-container {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: calc(50%);
+    background-color: rgba(0,0,0,0);
+    display: block;
+}
+
+.page-sub-container {
+    position: relative;
+    display: table;
+    top: 10%;
+    left: 15%;
+    width: 70%;
+    margin: 20px;
+}
+
+.page-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.page-button {
+    position: relative;
+    width: 100%;
+    height: 100px;
+}
+
+.page-title {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-size: 40px;
+    color: white;
+    margin: 10px;
+}
+
+.page-paragraph-title {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-size: 30px;
+    color: white;
+    margin: 10px;
+    margin-top: 40px;
+}
+
+.page-paragraph {
+    position: relative;
+    width: 100%;
+    text-align: justify;
+    font-family: "Poppins", serif;
+    font-size: 20px;
+    color: white;
+    margin: 10px;
+}
+
+#spc0img {
+    position: absolute;
+    left: 5%;
+    top: 15%;
+    width: 800px;
+    height: 500px;
+    margin: 0;
+}
+
+#spc1img {
+    position: absolute;
+    left: 5%;
+    top: 15%;
+    width: 800px;
+    height: 500px;
+    margin: 0;
+}
+
+#spc2img {
+    position: absolute;
+    left: 5%;
+    top: 15%;
+    width: 800px;
+    height: 500px;
+    margin: 0;
+}
+
+#spc3img {
+    position: absolute;
+    left: 5%;
+    top: 15%;
+    width: 800px;
+    height: 500px;
+    margin: 0;
+}
