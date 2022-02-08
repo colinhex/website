@@ -1,46 +1,70 @@
 from passlib.hash import sha256_crypt
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-from base64 import urlsafe_b64decode, urlsafe_b64encode
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from flask import url_for
 
+# import logging
+import re
 
-def str_un_pad(string):
-    return string[0:-int(string[-1])]
+# --------- Logging ------------
+# logger = logging.getLogger('Security')
 
-
-def str_pad(string, block_size):
-    n = block_size - (len(string) % block_size)
-    for i in range(1, n):
-        string += '0'
-    string += str(n)
-    return string
+# ---------- Preferences ----------
+__preferences: dict = {}
 
 
-def encrypt_data(data: str, secret: bytes):
-    padded_data = str_pad(data, 4)
-    data_b = urlsafe_b64decode(padded_data)
-    cipher = AES.new(secret, AES.MODE_CBC)
-    data_encrypted = cipher.encrypt(pad(data_b, AES.block_size))
-    return urlsafe_b64encode(b''.join([data_encrypted, cipher.iv])).decode('ascii')
+def set_pref(preferences):
+    global __preferences
+    __preferences = preferences
 
 
-def decrypt_data(data: str, secret: bytes):
-    data_b = urlsafe_b64decode(data)
-    cipher = AES.new(secret, AES.MODE_CBC, iv=data_b[-AES.block_size::])
-    data_decrypted = unpad(cipher.decrypt(data_b[0:-AES.block_size]), AES.block_size)
-    return str_un_pad(urlsafe_b64encode(data_decrypted).decode('ascii'))
+# ------------------------------------------------------------
+#                       Security Module
+# ------------------------------------------------------------
+
+# --------------- General Encryption For Data -----------------
+
+def encrypt_data(data: str) -> str:
+    cipher = AES.new(
+        pad(__preferences['SECRET_KEY'].encode('ascii'), AES.block_size),
+        AES.MODE_CBC
+    )
+
+    data = data.encode('latin-1')
+    data = cipher.encrypt(pad(data, AES.block_size))
+    data = b''.join([data, cipher.iv])
+    data = data.decode('latin-1')
+    return data
 
 
-def hash_password(password: str):
+def decrypt_data(data: str) -> str:
+    data = data.encode('latin-1')
+
+    cipher = AES.new(
+        pad(__preferences['SECRET_KEY'].encode('ascii'), AES.block_size),
+        AES.MODE_CBC,
+        iv=data[-AES.block_size::]
+    )
+
+    data = unpad(cipher.decrypt(data[0:-AES.block_size]), AES.block_size)
+    data = data.decode('latin-1')
+    return data
+
+
+# -------- Hash Passwords -------------
+
+def hash_password(password: str) -> str:
     return sha256_crypt.hash(password)
 
 
-def verify_password(password_hash, password: str):
+def verify_password(password: str, password_hash: str) -> bool:
     return sha256_crypt.verify(secret=password, hash=password_hash)
 
 
-def is_safe_redirect(redirect_url, app):
+# ------- Verify Site Redirects ------------
+
+def is_safe_redirect(redirect_url, app) -> bool:
     links = []
     with app.app_context(),  app.test_request_context():
         for rule in app.url_map.iter_rules():
@@ -49,4 +73,43 @@ def is_safe_redirect(redirect_url, app):
             if "GET" in rule.methods and len(defaults) >= len(arguments):
                 links.append(url_for(rule.endpoint, **(rule.defaults or {})))
     return redirect_url in links
+
+
+# ------- User Activation Tokens -----------
+
+def generate_verification_token(email) -> str:
+    serializer = URLSafeTimedSerializer(secret_key=__preferences['SECRET_KEY'])
+    return serializer.dumps(email, salt='verify')
+
+
+def confirm_verification_token(token, expiration=3600) -> str:
+    serializer = URLSafeTimedSerializer(secret_key=__preferences['SECRET_KEY'])
+    try:
+        email = serializer.loads(
+            token,
+            salt='verify',
+            max_age=expiration
+        )
+    except SignatureExpired:
+        raise ValueError('Illegitimate token, Expired')
+    except BadSignature:
+        raise ValueError('Illegitimate token, Bad Signature')
+    return email
+
+
+# -------- String Format Exploit Prevention ------
+
+def verify_email_pattern(email) -> bool:
+    #  https://stackoverflow.com/a/201378
+    pattern = r"?:[a-z0-9!  # $%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-" \
+              r"\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])" \
+              r"?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:" \
+              r"(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-" \
+              r"\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
+    return not not re.match(pattern, email)
+
+
+def verify_alphanumerical_pattern(text) -> bool:
+    pattern = r"^[a-zA-Z0-9\s]*$"
+    return not not re.match(pattern, text)
 

@@ -37,5 +37,6 @@
 
   /* Animation */
   --intro-animation-speed: 4s;
-  --page-content-fade-in-speed: 1s;
+  --page-content-fade-in-speed: 0.3s;
+  --slide-page-roll-speed: 0.3s;
 }

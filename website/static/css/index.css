@@ -69,9 +69,9 @@ html {
 }
 
 .roll-down {
-    transition-delay: 0.1s;
+    transition-delay: 0.2s;
     max-height: 90%;
-    transition: max-height 1s;
+    transition: max-height var(--slide-page-roll-speed);
 }
 
 .fixed-page {
@@ -129,17 +129,20 @@ html {
 
 .page-sub-container {
     position: relative;
-    display: table;
+    display: block;
     top: 10%;
     left: 15%;
     width: 70%;
     margin: 20px;
+    text-align: center;
 }
 
 .page-image {
     position: relative;
     width: 100%;
     height: auto;
+    object-fit: cover;
+    margin: 10px;
 }
 
 .page-button {
@@ -166,7 +169,7 @@ html {
     font-size: 30px;
     color: white;
     margin: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .page-paragraph {
@@ -174,7 +177,7 @@ html {
     width: 100%;
     text-align: justify;
     font-family: "Poppins", serif;
-    font-size: 20px;
+    font-size: 17px;
     color: white;
     margin: 10px;
 }
@@ -213,4 +216,10 @@ html {
     width: 800px;
     height: 500px;
     margin: 0;
+}
+
+label {
+    font-family: "Poppins", serif;
+    font-size: 12px;
+    color: white;
 }

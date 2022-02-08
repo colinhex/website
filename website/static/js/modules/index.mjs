@@ -99,18 +99,18 @@ export function configureNavbarAnimations(elementsOfIndexPage) {
                 elementsOfIndexPage.pg[now_pressed].classList.remove("roll-down");
                 elementsOfIndexPage.pg[now_pressed].classList.add("fixed-page");
                 releasePointerBlock(elementsOfIndexPage);
-            }, 1000);
+            }, 300);
 
             // fade in page content
             setTimeout(function() {
                 addClassToElements("fade-in-slide-page-content", collectChildren(elementsOfIndexPage.spc[now_pressed]));
                 elementsOfIndexPage.spc[now_pressed].style.visibility = "visible";
-            }, 1000);
+            }, 300);
 
             // remove fade in page content animation
             timeout = setTimeout(function() {
                 removeClassFromElements("fade-in-slide-page-content", collectChildren(elementsOfIndexPage.spc[now_pressed]));
-            }, 2000);
+            }, 600);
 
             // hide other pages
             setTimeout(function() {
@@ -123,7 +123,7 @@ export function configureNavbarAnimations(elementsOfIndexPage) {
                         }
                     }
                 }
-            }, 1000);
+            }, 300);
 
             last_pressed = now_pressed;
 

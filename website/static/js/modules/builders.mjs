@@ -145,8 +145,6 @@ export class DynamicBlogElementBuilder {
             dynamicBlogElement.appendChild(commentButton);
         }
 
-
-        console.log(dynamicBlogElement);
         return dynamicBlogElement;
     }
 }
@@ -187,6 +185,7 @@ export class EditorBuilder {
     buildEditor() {
         const editor = document.createElement('form');
         editor.className = 'editor';
+        editor.method = 'POST';
 
         for (var i = 0; i < this.textareaData.length; i++) {
             var textarea = document.createElement('textarea');
@@ -195,26 +194,13 @@ export class EditorBuilder {
             textarea.id = this.id + '-textarea-' + i;
             textarea.name = this.textareaData[i].name.toLowerCase();
 
-            /*
-            var label = document.createElement('label');
-            label.for = textarea.id;
-            label.innerHTML = this.textareaData[i].name;
-            label.className = 'editor-label';
-            */
-
             var textareaContainer = document.createElement('div');
             textareaContainer.className = 'textarea-container';
             textareaContainer.appendChild(textarea);
 
-            /*
-            var textareaDescriptionContainer = document.createElement('div');
-            textareaDescriptionContainer.className = 'textarea-name-container';
-            textareaDescriptionContainer.appendChild(label);
-            */
-
             var editorContainer = document.createElement('div');
             editorContainer.className = 'editor-container';
-            /* editorContainer.appendChild(textareaDescriptionContainer); */
+
             editorContainer.appendChild(textareaContainer);
             editorContainer.style.height = this.textareaData[i].height;
 

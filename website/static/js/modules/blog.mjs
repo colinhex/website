@@ -27,14 +27,14 @@ export class PostEditor {
             .addTextarea('Title', '30px', 'Title...')
             .addTextarea('Link', '30px', 'Optionally reference a website...')
             .addTextarea('Text', '150px', 'Write a post...')
-            .addButton('Submit', false, 'post-editor-submit-button', this.submit)
+            .addButton('Submit', true, 'post-editor-submit-button', this.submit)
             .addButton('Discard', false, 'post-editor-discard-button', this.discard)
             .buildEditor();
         this.editorElement = (new DynamicBlogElementBuilder())
+            .setTitle('Post Editor')
             .setBottomNode(editorForm)
             .buildElement();
         /* Style Changes */
-        /* this.editorElement.classList.add('editor-dynamic-blog-element'); */
 
         /* Placeholder Toggle Element */
         this.toggle = document.createElement('button');
@@ -117,10 +117,11 @@ export class CommentEditor {
         /* Construct Div */
         let editorForm = (new EditorBuilder())
             .addTextarea('Text', '100px', 'Write a comment...')
-            .addButton('submit', false, 'comment-editor-submit-button', this.submit)
+            .addButton('submit', true, 'comment-editor-submit-button', this.submit)
             .addButton('discard', false, 'comment-editor-discard-button', this.discard)
             .buildEditor();
         this.commentEditorDynElement = (new DynamicBlogElementBuilder())
+            .setTitle('Comment Editor')
             .setBottomNode(editorForm)
             .buildElement();
         /* Style Changes */
@@ -139,13 +140,13 @@ export class CommentEditor {
 
 
 function createComment(data) {
-    var predecessor = document.getElementById(data.predecessor);
+    var predecessor = document.getElementById(data.parent_id);
     var element = (new DynamicBlogElementBuilder())
-        .setID(data.cid)
+        .setID('e_' + data.element_id)
         .setPredecessor(predecessor)
-        .setAuthor(data.author)
-        .setDate(data.date)
-        .setText(data.txt)
+        .setAuthor(data.element_author)
+        .setDate(data.element_date)
+        .setText(data.element_text)
         .setCommentable()
         .buildElement();
     element.classList.add('comment');
@@ -161,13 +162,13 @@ function createComment(data) {
 
 function createPost(data) {
     var element = (new DynamicBlogElementBuilder())
-        .setID(data.bpid)
-        .setAuthor(data.author)
-        .setDate(data.date)
-        .setText(data.txt)
-        .setTitle(data.title)
+        .setID('e_' + data.element_id)
+        .setAuthor(data.element_author)
+        .setDate(data.element_date)
+        .setText(data.element_text)
+        .setTitle(data.post_title)
         .setPinned(data.pinned)
-        .setHref(data.href)
+        .setHref(data.post_href)
         .setCommentable()
         .buildElement();
 

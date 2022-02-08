@@ -71,7 +71,7 @@
                             </p>
                         </div>
                         <div class="page-sub-container">
-                            <button class="default-button page-button" onclick="window.location.href='/signin'">to login</button>
+                            <button class="default-button page-button" onclick="window.location.href='/register'">to login</button>
                         </div>
                     </div>
                     <div class="page-container">
@@ -84,46 +84,92 @@
                     <div class="page-container">
                         <div class="page-sub-container">
                             <p class="page-paragraph-title">
-                                "Why does my code not compile?"
+                                Why Information Science?
                             </p>
                         </div>
                         <div class="page-sub-container">
                             <p class="page-paragraph">
-                                When I joined the Computer Science faculty in Basel as an undergraduate,
-                                I had never written a single line of code. What I learned very quickly was that
-                                no matter the subject: some basic understanding, engagement and interest can make
-                                a fool be a rookie, and let a rookie become savvy.
+                                I have always been interested in technology, and it did not take long for me to take up
+                                programming and mathematics as favorites in my studies. An entry point towards computer
+                                science for me was the realization that no matter the sub-subject or issue, time and
+                                sustained engagement can make a fool be a rookie and let a rookie become savvy.
+                                I discovered some affinity for structure and some sense of beauty in code.
+                                Be it in the predictability and elegance of algorithms or in the pragmatic
+                                and creative way of heuristics.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <img class="page-image" src="{{ url_for('static', filename='/img/connected-points.png') }}">
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                There are right ways to do things, by design or metrics
+                                and if you stumble across it by research or are told once you are sure not to make the
+                                same mistake twice, as it probably gave you more head-aches than you like to admit.
+                                If you are thorough enough and have a curious outlook that welcomes criticism you very
+                                likely prevent mistakes all-together. Being empathetic towards others, this makes
+                                results especially satisfying: knowing you worked on something that is persistent,
+                                secure and won’t cause head-aches.
                             </p>
                         </div>
                         <div class="page-sub-container">
                             <p class="page-paragraph">
                                 Through the course of my degree I was dabbling first in Java, then MatLab and Python,
                                 then some C++ and SQL and, at the time of writing, in the basics of web-development.
-                                The biggest "Ahaa"-moment was not some deeply-buried-in-the-stack exception, though there
+                                My biggest "Ahaa"-moment was not some deeply-buried-in-the-stack exception, though there
                                 were quite a few of those, but the sheer size of all individual and interconnected
                                 software-systems that span the globe and drive the economy, society and politics of today
                                 and tomorrow.
                             </p>
                         </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                So, what is my place in the world of tomorrow? I think it's here!.
-                            </p>
-                        </div>
                     </div>
                     <div class="page-container">
                         <div class="page-sub-container">
-                            <img class="page-image" src="{{ url_for('static', filename='/img/desk.png') }}">
-                        </div>
-                        <div class="page-sub-container">
                             <p class="page-paragraph-title">
-                                "Can I even get this done on time?"
+                                Hobbies and Interests
                             </p>
                         </div>
                         <div class="page-sub-container">
                             <p class="page-paragraph">
-                                If anything makes somebody an engineer it's knowing your own limits and not
-                                being scared of the "new" or "unknown".
+                                One major driver of my interest was always the ways authors could put far away futures
+                                into words. When I was young I was captivated by Isaac Asimov’s novels and not long ago
+                                by Adrian Tchaikovsky’s Children of Time, Liu Cixin’s Remembrance of Earths Past and,
+                                to kill the time, Pierce Brown’s Red Rising book series.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <img id="tbp-jpg" class="page-image" src="{{ url_for('static', filename='/img/three-body-problem.jpg') }}">
+                            <label for="tbp-jpg">Fan-art of Remembrance of Earths Past</label>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                All the themes of fictitious shows, movies and books that tie me up have some
+                                scope to them, but I can also enjoy some action movie here and there. On the non-fiction
+                                side one of my favorite reads was The Algorithm Design Manual by Steven Skiena.
+                                When time is short I do like to listen to audiobooks while doing mundane every-day things
+                                to get my spirit up. It takes a good chunk of boredom out of the day and chores are much
+                                more rewarding.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                To keep myself fit I work out and swim in my spare time. On weekends, I meet friends
+                                at bars or restaurants. So In short, you might meet me in public pools and places
+                                serving good food and drinks! If the weather is right and the time is there, skiing or
+                                traveling also cheer me up. Some on my bucket-list are the Rocky Mountains,
+                                the Red-Wood Forests, Moscow and Islands like Okinawa, the Canaries and the Maldives.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+                                Other things I recently started practicing are sudoku, chess and Russian, with the intent
+                                to keep myself sharp and the effect of feeling like climbing steep hills below a fog that
+                                disillusions any sense of progress.
+                            </p>
+                        </div>
+                        <div class="page-sub-container">
+                            <p class="page-paragraph">
+
                             </p>
                         </div>
                     </div>
@@ -142,7 +188,7 @@
                         </p>
                     </div>
                     <div class="page-container">
-                        <img id="spc2img" src="{{ url_for('static', filename='/img/eye.png') }}">
+                        <img id="spc2img0" src="{{ url_for('static', filename='/img/eye.png') }}">
                     </div>
                 </div>
             </div>
