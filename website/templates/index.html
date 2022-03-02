@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png')}}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css')}}">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/tooltips.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/user_toolbar.css') }}">
     <title>colinhex</title>
 </head>
 <body>
@@ -35,177 +37,255 @@
             </div>
         </div>
         <div class="page-content">
-            <div id="banner" style="background-image: url({{ url_for('static', filename='/img/laptop.jpg') }});"></div>
-            <div id="banner-text" style="background-image: url({{ url_for('static', filename='/img/colinhex.png') }});"></div>
-            <div id="pg0" class="slide-page" style="z-index: 1; background-color: var(--color-page0);">
-                <div id="spc0" class="slide-page-content">
-                    <div class="page-container">
-                        <div class="page-sub-container">
-                            <p class="page-title">
-                                Navigation
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph-title">
-                                Updates & Forum
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                In the update forum you can find updates to the website, new projects and a general
-                                overlook over what I'm up to. You can also subscribe to the forum and receive the gist
-                                comfortably in your email. If you're a user you can create Posts and comments yourself!
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <button class="default-button page-button" onclick="window.location.href='/updates'">to update forum</button>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph-title">
-                                Register & Login
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                Create an account or login to get more privileges on the website.
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <button class="default-button page-button" onclick="window.location.href='/register'">to login</button>
-                        </div>
-                    </div>
-                    <div class="page-container">
+            {% if current_user.is_authenticated %}
+            <div class='user-toolbar'>
+                <div class='user-toolbar-text-container'>
+                   {{ current_user.get_id() }}
+                </div>
+                <div class='default-button user-toolbar-option tooltip' onclick="window.location = '{{ request.base_url }}settings';" style="background-image: url({{ url_for('static', filename='/img/uticons/settings.svg') }});">
+                    <span class="tooltiptext">User Settings</span>
+                </div>
+                <div class='default-button user-toolbar-option tooltip' onclick="window.location = '{{ request.base_url }}share/{{ url_for(request.endpoint) }}';" style="background-image: url({{ url_for('static', filename='/img/uticons/send.svg') }});">
+                    <span class="tooltiptext">Share This Website</span>
+                </div>
+                <div class='default-button user-toolbar-option tooltip' onclick="window.location = '{{ request.base_url }}logout';" style="background-image: url({{ url_for('static', filename='/img/uticons/log-out.svg') }});">
+                    <span class="tooltiptext">Log-Out</span>
+                </div>
+            </div>
+            {% endif %}
+            <div id="banner-container">
+                <!-- Banner -->
+                <div id="banner-text" style="">
+                    <p> Welcome to my Webpage! </p>
+                </div>
+                <div id="transparent-colors" style="background-image: url({{ url_for('static', filename='/img/banner.png') }});"></div>
+            </div>
 
+            <div id="index-pages">
+                <div id="pg0" class="slide-page" style="z-index: 4; background-color: var(--color-page0); background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                    <div id="spc0" class="slide-page-content" style="background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                        <div class="page-container">
+                            <div class="page-sub-container page-sub-container-wide-interactive">
+                                <div class="page-container-partition tooltip">
+                                    <button class="default-button page-button" onclick="window.location.href='/login'">to login</button>
+                                    <span class="tooltiptext">If you already have an account you are family! Just log in already!</span>
+                                </div>
+                                <div class="page-container-partition tooltip">
+                                    <button class="default-button page-button" onclick="window.location.href='/updates'">to updates</button>
+                                    <span class="tooltiptext">I know you want to be informed, don't you? I have your back! Click!</span>
+                                </div>
+                                <div class="page-container-partition tooltip">
+                                    <button class="default-button page-button" onclick="window.location.href='/forum'">to forum</button>
+                                    <span class="tooltiptext">It's not a website unless you can participate! Go on, don't be shy!</span>
+                                </div>
+                                <div class="page-container-partition tooltip">
+                                    <button class="default-button page-button" onclick="window.location.href='/register'">to register</button>
+                                    <span class="tooltiptext">Safely encrypted, not just the passwords, you're in good hands!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-toolbar" style="right: -300px;">
+                            <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}';" style="background-image: url({{ url_for('static', filename='/img/uticons/x-square.svg') }});"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="pg1" class="slide-page" style="z-index: 2; background-color: var(--color-page1);">
-                <div id="spc1" class="slide-page-content">
-                    <div class="page-container">
-                        <div class="page-sub-container">
-                            <p class="page-paragraph-title">
-                                Why Information Science?
-                            </p>
+                <div id="pg1" class="slide-page" style="z-index: 1; background-color: var(--color-page1); background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                    <div id="spc1" class="slide-page-content" style="background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                        <div class="page-container">
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph-title">
+                                    Why Computer Science?
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    I have always been interested in technology, and it did not take long for me to take up
+                                    programming and mathematics as favorites in my studies. An entry point towards computer
+                                    science for me was the realization that no matter the sub-subject or issue, time and
+                                    sustained engagement can make a fool be a rookie and let a rookie become savvy.
+                                    I discovered some affinity for structure and some sense of beauty in code.
+                                    Be it in the predictability and elegance of algorithms or in the pragmatic
+                                    and creative way of heuristics.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    There are right ways to do things, by design or metrics
+                                    and if you stumble across it by research or are told once you are sure not to make the
+                                    same mistake twice, as it probably gave you more head-aches than you like to admit.
+                                    If you are thorough enough and have a curious outlook that welcomes criticism you very
+                                    likely prevent most mistakes from the get-go. Being empathetic towards others, this makes
+                                    results especially satisfying: knowing you worked on something that is persistent,
+                                    secure and won’t cause head-aches.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    Through the course of my degree I was dabbling first in Java, then MatLab and Python,
+                                    then some C++ and SQL and, at the time of writing, in the basics of web-development.
+                                    My biggest "Ahaa"-moment was not some deeply-buried-in-the-stack exception, though there
+                                    were quite a few of those, but the sheer size of all individual and interconnected
+                                    software-systems that span the globe and drive the economy, society and politics of today
+                                    and tomorrow.
+                                </p>
+                            </div>
                         </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                I have always been interested in technology, and it did not take long for me to take up
-                                programming and mathematics as favorites in my studies. An entry point towards computer
-                                science for me was the realization that no matter the sub-subject or issue, time and
-                                sustained engagement can make a fool be a rookie and let a rookie become savvy.
-                                I discovered some affinity for structure and some sense of beauty in code.
-                                Be it in the predictability and elegance of algorithms or in the pragmatic
-                                and creative way of heuristics.
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <img class="page-image" src="{{ url_for('static', filename='/img/connected-points.png') }}">
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                There are right ways to do things, by design or metrics
-                                and if you stumble across it by research or are told once you are sure not to make the
-                                same mistake twice, as it probably gave you more head-aches than you like to admit.
-                                If you are thorough enough and have a curious outlook that welcomes criticism you very
-                                likely prevent mistakes all-together. Being empathetic towards others, this makes
-                                results especially satisfying: knowing you worked on something that is persistent,
-                                secure and won’t cause head-aches.
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                Through the course of my degree I was dabbling first in Java, then MatLab and Python,
-                                then some C++ and SQL and, at the time of writing, in the basics of web-development.
-                                My biggest "Ahaa"-moment was not some deeply-buried-in-the-stack exception, though there
-                                were quite a few of those, but the sheer size of all individual and interconnected
-                                software-systems that span the globe and drive the economy, society and politics of today
-                                and tomorrow.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="page-container">
-                        <div class="page-sub-container">
-                            <p class="page-paragraph-title">
-                                Hobbies and Interests
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                One major driver of my interest was always the ways authors could put far away futures
-                                into words. When I was young I was captivated by Isaac Asimov’s novels and not long ago
-                                by Adrian Tchaikovsky’s Children of Time, Liu Cixin’s Remembrance of Earths Past and,
-                                to kill the time, Pierce Brown’s Red Rising book series.
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <img id="tbp-jpg" class="page-image" src="{{ url_for('static', filename='/img/three-body-problem.jpg') }}">
-                            <label for="tbp-jpg">Fan-art of Remembrance of Earths Past</label>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                All the themes of fictitious shows, movies and books that tie me up have some
-                                scope to them, but I can also enjoy some action movie here and there. On the non-fiction
-                                side one of my favorite reads was The Algorithm Design Manual by Steven Skiena.
-                                When time is short I do like to listen to audiobooks while doing mundane every-day things
-                                to get my spirit up. It takes a good chunk of boredom out of the day and chores are much
-                                more rewarding.
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                To keep myself fit I work out and swim in my spare time. On weekends, I meet friends
-                                at bars or restaurants. So In short, you might meet me in public pools and places
-                                serving good food and drinks! If the weather is right and the time is there, skiing or
-                                traveling also cheer me up. Some on my bucket-list are the Rocky Mountains,
-                                the Red-Wood Forests, Moscow and Islands like Okinawa, the Canaries and the Maldives.
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
-                                Other things I recently started practicing are sudoku, chess and Russian, with the intent
-                                to keep myself sharp and the effect of feeling like climbing steep hills below a fog that
-                                disillusions any sense of progress.
-                            </p>
-                        </div>
-                        <div class="page-sub-container">
-                            <p class="page-paragraph">
+                        <div class="page-container">
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph-title">
+                                    Hobbies and Interests
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    One major driver of my interest was always the ways authors could put far away futures
+                                    into words. When I was young I was captivated by Isaac Asimov’s novels and not long ago
+                                    by Adrian Tchaikovsky’s Children of Time, Liu Cixin’s Remembrance of Earths Past and,
+                                    to kill the time, Pierce Brown’s Red Rising book series.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <img id="tbp-jpg" class="page-image" src="{{ url_for('static', filename='/img/three-body-problem.jpg') }}">
+                                <label for="tbp-jpg">Fan-art of Remembrance of Earths Past</label>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    All the themes of fictitious shows, movies and books that tie me up have some
+                                    scope to them, but I can also enjoy some action movie here and there. On the non-fiction
+                                    side one of my favorite reads was The Algorithm Design Manual by Steven Skiena.
+                                    When time is short I do like to listen to audiobooks while doing mundane every-day things
+                                    to get my spirit up. It takes a good chunk of boredom out of the day and chores are much
+                                    more rewarding.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    To keep myself fit I work out and swim in my spare time. On weekends, I meet friends
+                                    at bars or restaurants. So In short, you might meet me in public pools and places
+                                    serving good food and drinks! If the weather is right and the time is there, skiing or
+                                    traveling also cheer me up. Some on my bucket-list are the Rocky Mountains,
+                                    the Red-Wood Forests, Moscow and Islands like Okinawa, the Canaries and the Maldives.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    Other things I recently started practicing are sudoku, chess and Russian, with the intent
+                                    to keep myself sharp and the effect of feeling like climbing steep hills below a fog that
+                                    disillusions any sense of progress.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered">
+                                <p class="page-paragraph">
 
-                            </p>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="user-toolbar" style="right: -300px;">
+                            <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}';" style="background-image: url({{ url_for('static', filename='/img/uticons/x-square.svg') }});"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="pg2" class="slide-page" style="z-index: 3; background-color: var(--color-page2);">
-                <div id="spc2" class="slide-page-content">
-                    <div class="page-container">
-                        <p class="page-paragraph">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                            dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-                            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </p>
-                    </div>
-                    <div class="page-container">
-                        <img id="spc2img0" src="{{ url_for('static', filename='/img/eye.png') }}">
+                <div id="pg2" class="slide-page" style="z-index: 2; background-color: var(--color-page2); background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                    <div id="spc2" class="slide-page-content" style="background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                        <div class="page-container">
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph-title">
+                                    How to contact me?
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    You will find me via my personal <b>colin.fingerlin@gmail.com</b> and on
+                                    <b>colinhex@github.com</b>. Other than that, check out my linkedin-page!
+                                    Or finally, you can also fill out the contact form below!
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph-title">
+                                    Hire me freelance?
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    Currently I'm not interested in any freelance work. If you want to find out when I am,
+                                    register and update your notification settings.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph-title">
+                                    Hire me otherwise?
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    No reason not to be casual. Send me your Job Specifications on any channel, and I will
+                                    get back to you!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="page-container">
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <img id="spc2img0" class="page-image"  src="{{ url_for('static', filename='/img/desk.png') }}">
+                            </div>
+                        </div>
+                        <div class="user-toolbar" style="right: -300px;">
+                            <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}';" style="background-image: url({{ url_for('static', filename='/img/uticons/x-square.svg') }});"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="pg3" class="slide-page" style="z-index: 4; background-color: var(--color-page3);">
-                <div id="spc3" class="slide-page-content">
-                    <div class="page-container">
-                        <img id="spc3img" src="{{ url_for('static', filename='/img/eye.png') }}">
-                    </div>
-                    <div class="page-container">
-                         <p class="page-paragraph">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                            dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-                            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus <a href="/updates">listen for UPDATES</a>.
-                        </p>
+                <div id="pg3" class="slide-page" style="z-index: 3; background-color: var(--color-page3); background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                    <div id="spc3" class="slide-page-content" style="background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+                        <div class="page-container">
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph-title">
+                                    Learning about Networks and Security
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <img id="ss-uml" class="page-image"  src="{{ url_for('static', filename='/img/secret_sharing_uml.png') }}">
+                                <label for="ss-uml">Informal UML diagram of module.</label>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    I had a lot of fun writing the back-end for a 'Secret Sharing' module in the scope
+                                    of the <a href="https://github.com/cn-uofbasel/BACnet">Basel Citizen Net</a> repository some time ago.
+                                    The project and the corresponding lectures were a great introduction to networks, security and
+                                    encryption. An unprompted addition from me was using the shamir algorithm which takes secrets
+                                    of a maximum of 16 bytes and reordering & repackaging the data until it would support secrets
+                                    of 4 Kb, keeping linear complexity.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <img id="shamir-extended" class="page-image"  src="{{ url_for('static', filename='/img/large_secret_create.png') }}">
+                                <label for="shamir-extended">O(n) complexity of the wrapped algorithm.</label>
+                            </div>
+                        </div>
+                        <div class="page-container">
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph-title">
+                                    Analysing Large Amounts of Data
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <img id="rcom-jpg" class="page-image"  src="{{ url_for('static', filename='/img/webapp.jpg') }}">
+                                <label for="rcom-jpg">Screenshot of a web-application to browse analysis results.</label>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+                                <p class="page-paragraph">
+                                    In a recent university project I got the chance to work with large datasets of
+                                    reddit-comments. My co-conspirator and I went around the initial project specifications
+                                    which were to choose datasets and analyse them and instead created our own by webscraping
+                                    hundreds of thousands of domains. If you're interested in details you can
+                                    <a href="/reddit-comments">check out this poster</a>.
+                                </p>
+                            </div>
+                            <div class="page-sub-container page-sub-container-centered page-sub-container-backdropped">
+
+                            </div>
+                        </div>
+                        <div class="user-toolbar" style="right: -300px;">
+                            <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}';" style="background-image: url({{ url_for('static', filename='/img/uticons/x-square.svg') }});"></div>
+                        </div>
                     </div>
                 </div>
             </div>

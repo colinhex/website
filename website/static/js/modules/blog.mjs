@@ -27,7 +27,7 @@ export class PostEditor {
             .addTextarea('Title', '30px', 'Title...')
             .addTextarea('Link', '30px', 'Optionally reference a website...')
             .addTextarea('Text', '150px', 'Write a post...')
-            .addButton('Submit', true, 'post-editor-submit-button', this.submit)
+            .addButton('Submit', true, 'post-editor-submit-button', this.submit, 'post')
             .addButton('Discard', false, 'post-editor-discard-button', this.discard)
             .buildEditor();
         this.editorElement = (new DynamicBlogElementBuilder())
@@ -82,6 +82,40 @@ export class PostEditor {
 
 export class CommentEditor {
 
+    constructor() {
+        /* Pass predecessor ID to Form */
+        this.predIdValueHolder = document.createElement('input');
+        this.predIdValueHolder.type = 'hidden';
+        this.predIdValueHolder.id = 'predecessor-id'
+        this.predIdValueHolder.name = 'parent';
+        this.predIdValueHolder.value = '';
+
+        console.log(this.predIdValueHolder);
+
+        /* Elements to be bound to event listeners... */
+        this.discard = document.createElement('button');
+        this.submit = document.createElement('button');
+
+        /* Construct Div */
+        let editorForm = (new EditorBuilder())
+            .addTextarea('Text', '100px', 'Write a comment...')
+            .addButton('submit', true, 'comment-editor-submit-button', this.submit, 'comment')
+            .addButton('discard', false, 'comment-editor-discard-button', this.discard)
+            .addFormValueHolder(this.predIdValueHolder)
+            .buildEditor();
+        this.commentEditorDynElement = (new DynamicBlogElementBuilder())
+            .setTitle('Comment Editor')
+            .setBottomNode(editorForm)
+            .buildElement();
+        /* Style Changes */
+        this.commentEditorDynElement.classList.add('comment-editor');
+        /* this.commentEditorDynElement.classList.add('editor-dynamic-blog-element'); */
+
+        /* Predecessor of Comment Acts as Toggle */
+        this.predecessor = null;
+
+    }
+
     hasPredecessor() {
         return this.predecessor != null;
     }
@@ -106,30 +140,9 @@ export class CommentEditor {
         /* Insert after new Predecessor */
         newPredecessor.parentNode.insertBefore(this.commentEditorDynElement, newPredecessor.nextSibling);
         this.predecessor = newPredecessor;
+        console.log('New Predecessor ID:' + newPredecessor.id.substring(2))
+        document.getElementById('predecessor-id').value = newPredecessor.id.substring(2);
         this.commentEditorDynElement.classList.add('element-appearance');
-    }
-
-    constructor() {
-        /* Elements to be bound to event listeners... */
-        this.discard = document.createElement('button');
-        this.submit = document.createElement('button');
-
-        /* Construct Div */
-        let editorForm = (new EditorBuilder())
-            .addTextarea('Text', '100px', 'Write a comment...')
-            .addButton('submit', true, 'comment-editor-submit-button', this.submit)
-            .addButton('discard', false, 'comment-editor-discard-button', this.discard)
-            .buildEditor();
-        this.commentEditorDynElement = (new DynamicBlogElementBuilder())
-            .setTitle('Comment Editor')
-            .setBottomNode(editorForm)
-            .buildElement();
-        /* Style Changes */
-        this.commentEditorDynElement.classList.add('comment-editor');
-        /* this.commentEditorDynElement.classList.add('editor-dynamic-blog-element'); */
-
-        /* Predecessor of Comment Acts as Toggle */
-        this.predecessor = null;
     }
 
 }
@@ -140,7 +153,8 @@ export class CommentEditor {
 
 
 function createComment(data) {
-    var predecessor = document.getElementById(data.parent_id);
+    console.log('e_' + data.parent_element_id);
+    var predecessor = document.getElementById('e_' + data.parent_element_id);
     var element = (new DynamicBlogElementBuilder())
         .setID('e_' + data.element_id)
         .setPredecessor(predecessor)
@@ -161,6 +175,7 @@ function createComment(data) {
 }
 
 function createPost(data) {
+    console.log(data);
     var element = (new DynamicBlogElementBuilder())
         .setID('e_' + data.element_id)
         .setAuthor(data.element_author)

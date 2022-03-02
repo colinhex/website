@@ -3,6 +3,7 @@ from wtforms import Form, StringField, PasswordField, validators
 
 class RegisterForm(Form):
     username = StringField('username', [validators.Length(min=4, max=25), validators.DataRequired()])
+
     email = StringField('email', [validators.Length(min=6, max=35), validators.DataRequired()])
 
     password = PasswordField(name='password', validators=[
@@ -18,18 +19,21 @@ class RegisterForm(Form):
 
 
 class LoginForm(Form):
-    email = StringField('email', [validators.Length(min=6, max=35), validators.DataRequired()])
+    username = StringField('username', [validators.Length(min=6, max=35), validators.DataRequired()])
+
     password = PasswordField('password', [
         validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords must match')
     ])
 
 
 class PostForm(Form):
-    pass
+    title = StringField('title', [validators.Length(min=3, max=35), validators.DataRequired()])
+    href = StringField('href')
+    text = StringField('text', [validators.Length(min=10, max=500), validators.DataRequired()])
 
 
 class CommentForm(Form):
+    text = StringField('text', [validators.Length(min=10, max=500), validators.DataRequired()])
     pass
 
 

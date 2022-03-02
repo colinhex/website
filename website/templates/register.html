@@ -20,19 +20,11 @@
                 </a>
             </div>
         </div>
-        <div class="page-content" style="background-size: cover; background-image: url({{ url_for('static', filename='/img/dark.jpg') }});">
+        <div class="page-content" style="background-size: cover; background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
             <div class="container">
                 <div class="form-container">
-                    <form id="login-form" method="POST">
-                        <h3 >You already have an account?</h3>
-                        <label for="email-login">Email</label>
-                        <input name="email" id="email-login" type="text" placeholder="email..">
-                        <label for="password-login">Password</label>
-                        <input name="password" id="password-login" type="password" placeholder="password..">
-                        <button name="submit" value="login" class="default-button">Login</button>
-                    </form>
                     <form id="register-form" method="POST">
-                        <h3 >Otherwise...</h3>
+                        <h3>Register</h3>
                         <label for="username-register">Username</label>
                         <input name="username" id="username-register" type="text" placeholder="username..">
                         <label for="email-register">Email</label>
@@ -42,11 +34,6 @@
                         <label for="password2-register">Repeat Password</label>
                         <input name="password2" id="password2-register" type="password" placeholder="password..">
                         <button name="submit" value="register" class="default-button">Register</button>
-                    </form>
-                </div>
-                <div class="form-container">
-                    <form>
-
                     </form>
                 </div>
             </div>

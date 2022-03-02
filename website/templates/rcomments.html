@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/textFields.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/editor.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/user_toolbar.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/settings.css')}}">
+    <title>Settings</title>
+</head>
+<body>
+ <div id="blocking"></div>
+    <div class="content">
+        <div class="navbar">
+            <div id="ni0" class="navbar-item wide-navbar-item">
+                <a id="nbb0" class="navbar-button" type="button">
+                    back to homepage
+                </a>
+            </div>
+        </div>
+        <div class="page-content" style="background-size: cover; background-image: url({{ url_for('static', filename='/img/colordots.png') }});">
+            {% if current_user.is_authenticated %}
+            <div class='user-toolbar'>
+                <div class='user-toolbar-text-container'>
+                   {{ current_user.get_id() }}
+                </div>
+                <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}settings';" style="background-image: url({{ url_for('static', filename='/img/uticons/settings.svg') }});"></div>
+                <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}share/{{ url_for(request.endpoint) }}';" style="background-image: url({{ url_for('static', filename='/img/uticons/send.svg') }});"></div>
+                <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}logout';" style="background-image: url({{ url_for('static', filename='/img/uticons/log-out.svg') }});"></div>
+            </div>
+            {% endif %}
+            <div class='container'>
+                <embed src="{{ url_for('static', filename='/pdf/redditcomments.pdf') }}" style="width: 100%; height: 1200px;"/>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='/js/settings_script.js')}}"></script>
+</body>
+</html>

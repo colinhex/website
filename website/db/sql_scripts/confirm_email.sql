@@ -1,1 +1,1 @@
-update users set email_confirmed = 1 where user_id = %s;
+update users set email_confirmed = true where user_id = %s;

@@ -152,10 +152,12 @@ export class DynamicBlogElementBuilder {
 export class EditorBuilder {
     #textareaData;
     #buttonData;
+    #formValueHolders;
 
     constructor() {
         this.textareaData = new Array();
         this.buttonData = new Array();
+        this.formValueHolders = new Array();
     }
 
     addTextarea(name, height, placeholder) {
@@ -167,13 +169,19 @@ export class EditorBuilder {
         return this;
     }
 
-    addButton(name, submit, id, button) {
+    addButton(name, submit, id, button, value) {
         this.buttonData.push({
             'name': name,
             'submit': submit,
             'id': id,
-            'button': button
+            'button': button,
+            'value': value
         });
+        return this;
+    }
+
+    addFormValueHolder(element) {
+        this.formValueHolders.push(element)
         return this;
     }
 
@@ -215,11 +223,13 @@ export class EditorBuilder {
             let name = this.buttonData[i].name;
             let submit = this.buttonData[i].submit;
             let button = this.buttonData[i].button;
+            let value = this.buttonData[i].value;
             button.classList.add('default-button');
             button.classList.add('editor-button');
             button.innerHTML = name;
             button.name = name.toLowerCase();
             button.id = id;
+            button.value = value;
 
             if (submit) {
                 button.type = 'submit';
@@ -232,6 +242,11 @@ export class EditorBuilder {
         }
 
         editor.appendChild(editorButtonContainer);
+
+        for (var i = 0; i < this.formValueHolders.length; i++) {
+            console.log(this.formValueHolders[i])
+            editor.appendChild(this.formValueHolders[i])
+        }
 
         return editor;
     }

@@ -4,17 +4,50 @@ html {
     overflow: hidden;
 }
 
-#banner {
-    position: absolute;
-    margin 0;
-    width: 600px;
-    height: 1200px;
-    left: 30vw;
-    bottom: -30vh;
-    background-size: contain;
-    background-repeat: no-repeat;
+#banner-container {
+    min-width: 100%;
+    min-height: 100%;
+    position: fixed;
+    resize: none;
 }
 
+#banner {
+    position: fixed;
+    margin 0;
+    width: 800px;
+    height: 1300px;
+    min-width: 800px;
+    min-height: 1300px;
+    left: 40vw;
+    bottom: 5%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    resize: none;
+}
+
+#transparent-colors {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+#logo {
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    /* border-radius: 20px; */
+    border-color: white;
+    border-size: 2px;
+    left: 42%;
+    top: 10%;
+    right: 200px;
+}
+
+#index-pages {
+    width: 100%;
+    height: 100%;
+}
 
 .slide-banner {
     animation-duration: var(--intro-animation-speed);
@@ -23,24 +56,20 @@ html {
 
 @keyframes banner-animation {
     0% {
-        left: -10%;
         opacity: 0;
     }
     100% {
-        left: 30%;
         opacity: 1;
     }
 }
 
 #banner-text {
-    top: 70%;
-    left: 50%;
     position: absolute;
-    background-size: 500px 80px;
-    width: 1000px;
-    height: 200px;
-    background: contain;
-    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Poppins', serif;
+    font-size: 50px;
+    top: 70vh;
+    left: 20vw;
 }
 
 .fade-in-banner-text {
@@ -59,13 +88,15 @@ html {
 
 
 .slide-page {
-    position: relative;
+    position: absolute;
     top: 0px;
     left: 0;
     width: 100%;
     height: 90%;
     visibility: hidden;
     max-height: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .roll-down {
@@ -89,9 +120,10 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: auto;
     content-align: center;
     background-color: rgba(0,0,0,0);
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
 
     visibility: hidden;
@@ -130,16 +162,79 @@ html {
 .page-sub-container {
     position: relative;
     display: block;
+    text-align: center;
+}
+
+.page-sub-container-centered {
     top: 10%;
     left: 15%;
     width: 70%;
     margin: 20px;
-    text-align: center;
 }
+
+/* Todo remove backdrop or generalize to div backdrop */
+.page-sub-container-backdropped {
+    /* background-color: var(--color-black-transparent); */
+    /* border-radius: 10px; */
+}
+
+
+.page-sub-container-wide-interactive {
+    top: 100px;
+    left: 400px;
+    width: 1000px;
+    margin: 0px;
+    height: 800px;
+    display: flex-box;
+}
+
+
+.page-container-partition {
+    position: relative;
+    min-width: 40%;
+    min-height: 40%;
+    width: 40%;
+    height: 40%;
+    float: left;
+    margin: 1.25%;
+
+    border-width: 1px;
+    /* border-radius: 20px; */
+}
+
+.page-c-partition-text {
+    position: absolute;
+    top: 44%;
+    left: 44%;
+    transform: translateX(-44%) translateY(-44%);
+    font-family: "Poppins", sans-serif;
+    font-size: 35px;
+    font-weight: 400px;
+    color: white;
+}
+/*
+.page-container-partition:hover {
+    width: 50%;
+    margin: 1.25%;
+    height: 40%;
+    animation-duration: var(--speed-very-fast);
+    animation-name: c-partition-animation;
+}
+
+@keyframes c-partition-animation {
+    0% {
+        width: 40%;
+        height: 40%;
+    }
+    100% {
+        width: 50%;
+        height: 40%;
+    }
+}*/
 
 .page-image {
     position: relative;
-    width: 100%;
+    width: 96%;
     height: auto;
     object-fit: cover;
     margin: 10px;
@@ -148,12 +243,14 @@ html {
 .page-button {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 100%;
+    background-color: var(--color-white-transparent)
 }
 
 .page-title {
+    padding: 10px;
     position: relative;
-    width: 100%;
+    width: 92%;
     text-align: center;
     font-family: "Poppins", serif;
     font-size: 40px;
@@ -162,8 +259,9 @@ html {
 }
 
 .page-paragraph-title {
+    padding: 10px;
     position: relative;
-    width: 100%;
+    width: 92%;
     text-align: center;
     font-family: "Poppins", serif;
     font-size: 30px;
@@ -173,8 +271,9 @@ html {
 }
 
 .page-paragraph {
+    padding: 10px;
     position: relative;
-    width: 100%;
+    width: 92%;
     text-align: justify;
     font-family: "Poppins", serif;
     font-size: 17px;

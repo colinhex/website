@@ -3,6 +3,7 @@ import json
 
 
 def get_pre_view(href):
+    # Todo load previews for urls in blogposts.
     data = link_preview(href)
     preview = {
         'title': data.title,

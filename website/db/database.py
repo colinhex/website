@@ -40,7 +40,7 @@ def get_connection(key: str) -> dict:
 
 
 def abandon_connection(connection_data: dict) -> None:
-    logger.debug('Abandoning connection with key: ' + connection_data['key'])
+    # logger.debug('Abandoning connection with key: ' + connection_data['key'])
     __connection_pool.putconn(connection_data['connection'], connection_data['key'], close=False)
 
 
@@ -48,9 +48,9 @@ def execute(connection_data: dict, abandon=False) -> Any:
     if not connection_data['query']:
         raise ValueError('No query given to execute')
 
-    logger.debug('Executing query on connection with key: ' + connection_data['key'] +
-                 '\nQuery:\n{}\n{}'.format('-' * 20, connection_data['query']) +
-                 '\n<-- Args: {}\n{}'.format(connection_data['args'], '-' * 20))
+    # logger.debug('Executing query on connection with key: ' + connection_data['key'] +
+    #              '\nQuery:\n{}\n{}'.format('-' * 20, connection_data['query']) +
+    #              '\n<-- Args: {}\n{}'.format(connection_data['args'], '-' * 20))
 
     with connection_data['connection'].cursor() as curs:
         if connection_data['args']:

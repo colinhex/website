@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/register.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/textFields.css')}}">
+    <title>Sign-In</title>
+</head>
+<body>
+    <div id="blocking"></div>
+    <div class="content">
+        <div class="navbar">
+            <div id="ni0" class="navbar-item">
+                <a id="nbb0" class="navbar-button" type="button">
+                    back to homepage
+                </a>
+            </div>
+        </div>
+        <div class="page-content" style="background-size: cover; background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+            <div class="container">
+                <div class="form-container">
+                    <form id="login-form" method="POST">
+                        <h3 >Login</h3>
+                        <label for="username-login">Username</label>
+                        <input name="username" id="username-login" type="text" placeholder="username..">
+                        <label for="password-login">Password</label>
+                        <input name="password" id="password-login" type="password" placeholder="password..">
+                        <button name="submit" value="login" class="default-button">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='/js/signin_script.js')}}"></script>
+</body>
+</html>

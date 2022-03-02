@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='/img/icon/64x64.png')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/root.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/nbb.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/textFields.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/editor.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/user_toolbar.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/settings.css')}}">
+    <title>Settings</title>
+</head>
+<body>
+ <div id="blocking"></div>
+    <div class="content">
+        <div class="navbar">
+            <div id="ni0" class="navbar-item wide-navbar-item">
+                <a id="nbb0" class="navbar-button" type="button">
+                    back to homepage
+                </a>
+            </div>
+        </div>
+        <div class="page-content" style="background-size: cover; background-image: url({{ url_for('static', filename='/img/colordots2.png') }});">
+
+            {% if current_user.is_authenticated %}
+            <div class='user-toolbar'>
+                <div class='user-toolbar-text-container'>
+                   {{ current_user.get_id() }}
+                </div>
+                <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}settings';" style="background-image: url({{ url_for('static', filename='/img/uticons/settings.svg') }});"></div>
+                <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}share/{{ url_for(request.endpoint) }}';" style="background-image: url({{ url_for('static', filename='/img/uticons/send.svg') }});"></div>
+                <div class='default-button user-toolbar-option' onclick="window.location = '{{ request.base_url }}logout';" style="background-image: url({{ url_for('static', filename='/img/uticons/log-out.svg') }});"></div>
+            </div>
+            {% endif %}
+            <div class='container'>
+              <div class="settings-form-container">
+              <form>
+                <div>
+                  <p class='form-text form-text-title'>
+                    User Settings:
+                  </p>
+                  <label for="username-login" style='color: white;'>New Email</label>
+                  <input name="username" id="username-login" type="text" placeholder="">
+                  <p class='form-text'>
+                    Email Notification Settings:
+                  </p>
+                  <div class='email-notification-settings'>
+                    <p class='email-notification-settings-labels'>
+                      Project Updates
+                    </p>
+                    <p class='email-notification-settings-labels'>
+                      Website Updates
+                    </p>
+                    <p class='email-notification-settings-labels'>
+                      Others
+                    </p>
+                  </div>
+                  <div class='email-notification-settings'>
+                    <label id='p0' class="switch">
+                      <input type="checkbox">
+                      <span class="slider"></span>
+                    </label>
+                    <label id='p1' class="switch">
+                      <input type="checkbox">
+                      <span class="slider"></span>
+                    </label>
+                    <label id='p2' class="switch">
+                      <input type="checkbox">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <p class='form-text'>
+                  Change Password:
+                </p>
+                <div>
+                  <label for="username-login" style='color: white;'>Old Password</label>
+                  <input name="username" id="opw" type="text" placeholder="username..">
+                </div>
+                <div style='margin-top: 20px;'>
+                  <label for="username-login" style='color: white;'>New Password</label>
+                  <input name="username" id="npw" type="text" placeholder="username..">
+                </div>
+                <button type='submit' class='default-button form-submitt-button'>
+                    Submit
+                </button>
+              </form>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='/js/settings_script.js')}}"></script>
+</body>
+</html>

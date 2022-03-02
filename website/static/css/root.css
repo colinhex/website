@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 :root {
-
   --website-font: "Poppins";
 
   /* Colors */
@@ -11,29 +10,37 @@
   --color-purple: #7a18ec;
   --color-white: #fff;
   --color-white-transparent: rgba(255,255,255,0.13);
+  --color-black-transparent: rgba(0,0,0,0.7);
   --color-black: rgb(0, 0, 0, 1);
-  --speed-normal: 0.5s;
-  --speed-fast: 0.8s;
-
   --transparent: rgb(0, 0, 0, 0);
 
+  /* slide page coloring */
+
   --color-page0: #202020;
-  --color-page1: #404040;
-  --color-page2: #83677B;
-  --color-page3: #A9A9A9;
+  --color-page1: #303030;
+  --color-page2: #383838;
+  --color-page3: #404040;
 
   --color-button-labels: #FFFFFF;
 
   /* blog coloring */
   --blog-navbar-color: var(--color-page0);
   --blog-background-color: var(--transparent);
-  --blog-post-background-color0: var(--color-white-transparent);
+  --blog-post-background-color0: var(--color-black-transparent);
   --blog-post-background-color1: var(--color-white-transparent);
   --blog-button-color: var(--color-white-transparent);
 
-  /* text input */
+  /* text input colors */
+
   --text-input-primary: #11998e;
   --text-input-secondary: #38ef7d;
+
+  /* Animation Speeds */
+
+  --speed-slow: 0.1s;
+  --speed-normal: 0.5s;
+  --speed-fast: 0.8s;
+  --speed-very-fast: 0.2s;
 
   /* Animation */
   --intro-animation-speed: 4s;

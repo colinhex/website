@@ -7,7 +7,7 @@ from flask import url_for
 # import logging
 import re
 
-# --------- Logging ------------
+# --------- Logging ----------
 # logger = logging.getLogger('Security')
 
 # ---------- Preferences ----------
@@ -25,7 +25,7 @@ def set_pref(preferences):
 
 # --------------- General Encryption For Data -----------------
 
-def encrypt_data(data: str) -> str:
+def encrypt_data(data: str) -> bytes:
     cipher = AES.new(
         pad(__preferences['SECRET_KEY'].encode('ascii'), AES.block_size),
         AES.MODE_CBC
@@ -34,13 +34,10 @@ def encrypt_data(data: str) -> str:
     data = data.encode('latin-1')
     data = cipher.encrypt(pad(data, AES.block_size))
     data = b''.join([data, cipher.iv])
-    data = data.decode('latin-1')
     return data
 
 
-def decrypt_data(data: str) -> str:
-    data = data.encode('latin-1')
-
+def decrypt_data(data: bytes) -> str:
     cipher = AES.new(
         pad(__preferences['SECRET_KEY'].encode('ascii'), AES.block_size),
         AES.MODE_CBC,
@@ -97,7 +94,7 @@ def confirm_verification_token(token, expiration=3600) -> str:
     return email
 
 
-# -------- String Format Exploit Prevention ------
+# -------- String Format Exploit Prevention & SQL Injections ------
 
 def verify_email_pattern(email) -> bool:
     #  https://stackoverflow.com/a/201378
@@ -106,10 +103,10 @@ def verify_email_pattern(email) -> bool:
               r"?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:" \
               r"(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-" \
               r"\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
-    return not not re.match(pattern, email)
+    return re.match(pattern, email) is not None
 
 
 def verify_alphanumerical_pattern(text) -> bool:
     pattern = r"^[a-zA-Z0-9\s]*$"
-    return not not re.match(pattern, text)
+    return re.match(pattern, text) is not None
 

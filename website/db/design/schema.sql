@@ -3,7 +3,7 @@
 
 create table Users (
     user_id varchar(24),
-    email varchar(255) unique not null,
+    email bytea unique not null,
     email_confirmed boolean default false,
     password varchar(256) not null,
     register_date date not null,

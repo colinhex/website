@@ -5,7 +5,7 @@ import { getElements, runBannerAnimation, configureNavbarAnimations } from "./mo
 window.onload = function() {
     const elementsOfIndexPage = getElements();
     configureDefaultButtons();
-    runBannerAnimation(elementsOfIndexPage);
+    /* runBannerAnimation(elementsOfIndexPage); */
     configureNavbarAnimations(elementsOfIndexPage);
     releasePointerBlock(elementsOfIndexPage);
 }

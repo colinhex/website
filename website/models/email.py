@@ -1,5 +1,5 @@
 from flask_mail import Mail, Message
-from flask import url_for
+from flask import url_for, render_template
 import logging
 
 logger = logging.getLogger('Email Manager')
@@ -22,7 +22,6 @@ def configure_app_for_email(app, preferences):
 
 
 class EmailManager:
-
     def __init__(self, app):
         self.mail = Mail(app)
 
@@ -33,15 +32,18 @@ class EmailManager:
 def send_email_verification(user_data, preferences, generate_token, decrypt):
     address = decrypt(user_data['email'])
     msg = Message(
-        'Hello! Verify your email address on {}...'.format(preferences['website_name']),
+        'Hello! Verify your email address on {}...'.format(preferences['WEBSITE_NAME']),
         sender=preferences['MAIL_USERNAME'],
         recipients=[address]
     )
-    with open(url_for('static', filename='html/verification_mail.html')) as f:
-        msg.body = f.read().format(
-            preferences['DOMAIN'],
-            preferences['website_name'],
-            user_data['user_id'],
-            preferences['DOMAIN'] + '/' + generate_token(address)
-        )
+    logger.debug(preferences)
+    logger.debug(user_data)
+    msg.html = render_template(
+        'verification_email.html',
+        domain=preferences['DOMAIN'],
+        website_name=preferences['WEBSITE_NAME'],
+        user_id=user_data['user_id'],
+        token=preferences['DOMAIN'] + '/confirm/' + generate_token(address) + '/' + user_data['user_id']
+    )
     email_manager.send(msg)
+

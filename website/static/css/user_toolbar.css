@@ -1,0 +1,49 @@
+.user-toolbar {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  height: auto;
+  width: 600px;
+  display: flex;
+  z-index: 1;
+}
+
+.user-toolbar-text-container {
+    position: relative;
+    float: left;
+    padding-left: 10px;
+    background-color: var(--color-white-transparent);
+    font-family: "Poppins", serif;
+    font-size: 20px;
+    line-height: 50px;
+    color: white;
+    height: 50px;
+    width: calc(100%/3);
+}
+
+.user-toolbar-option {
+  position: relative;
+  float: left;
+  height: 50px;
+  width: calc(100%/3);
+  /* border-radius: 15px; */
+  /* background-color: var(--color-white-transparent); */
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.user-toolbar-option:hover {
+  height: 55px;
+  animation: user-toolbar-option-hover-animation;
+  animation-duration: 0.2s;
+}
+
+@keyframes user-toolbar-option-hover-animation {
+  0% {
+    height: 50px;
+  }
+  100% {
+    height: 55px;
+  }
+}

@@ -57,7 +57,7 @@ def column_result_set_to_tuple(column_result_set: tuple):
 
 def current_time():
     now = datetime.datetime.utcnow()
-    return now.strftime("%Y/%m/%d %H:%M:%S")
+    return now.strftime("%Y/%m/%d %H:%M:%S")  # Todo H-S not working.
 
 
 # ---------- Sub-Queries -----------
@@ -99,7 +99,7 @@ def get_comments(user_id: str) -> Any:
 
 
 def create_user(user_id: str, email: str, password: str,
-                hash_: Callable[[str], str], encrypt_: Callable[[str], str]) -> None:
+                hash_: Callable[[str], str], encrypt_: Callable[[str], bytes]) -> None:
     connection_data = database.get_connection(user_id)
     connection_data['query'] = queries['create_user']
     connection_data['args'] = [user_id, encrypt_(email), hash_(password), current_time()]

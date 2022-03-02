@@ -23,8 +23,8 @@ class User:
         self.authenticated = queries.verify_password(self.user_id, password, security.verify_password)
         return self.authenticated
 
-    def activate(self):
-        if self.user_id:
+    def activate(self, address):
+        if address == self.email:
             queries.confirm_email(self.user_id)
             return True
         else:

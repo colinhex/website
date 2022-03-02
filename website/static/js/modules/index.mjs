@@ -43,6 +43,18 @@ export function runBannerAnimation(elementsOfIndexPage) {
     }, 6000);
 }
 
+export function hidePages(excluding, elementsOfIndexPage) {
+    for (var j = 0; j < 4; j++) {
+        if (j != excluding) {
+            elementsOfIndexPage.spc[j].style.visibility = "hidden";
+            elementsOfIndexPage.pg[j].style.visibility = "hidden";
+            if (elementsOfIndexPage.pg[j].classList.contains("fixed-page")) {
+                elementsOfIndexPage.pg[j].classList.remove("fixed-page");
+            }
+        }
+    }
+}
+
 
 
 export function configureNavbarAnimations(elementsOfIndexPage) {
@@ -114,15 +126,7 @@ export function configureNavbarAnimations(elementsOfIndexPage) {
 
             // hide other pages
             setTimeout(function() {
-                for (var j = 0; j < 4; j++) {
-                    if (j != now_pressed) {
-                        elementsOfIndexPage.spc[j].style.visibility = "hidden";
-                        elementsOfIndexPage.pg[j].style.visibility = "hidden";
-                        if (elementsOfIndexPage.pg[j].classList.contains("fixed-page")) {
-                            elementsOfIndexPage.pg[j].classList.remove("fixed-page");
-                        }
-                    }
-                }
+                hidePages(now_pressed, elementsOfIndexPage);
             }, 300);
 
             last_pressed = now_pressed;
